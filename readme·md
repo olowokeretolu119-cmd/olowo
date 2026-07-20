@@ -1,0 +1,51 @@
+# Kynexa Bot (@kynexabot)
+
+A Telegram bot that turns short ideas into AI-generated images, with built-in prompt enhancement.
+
+## Features
+- `/generate <idea>` — enhances your idea into a detailed prompt and generates an image
+- `/enhance <idea>` — shows the enhanced prompt only, without generating an image
+- `/help` — lists available commands
+
+Image generation uses [Pollinations.ai](https://pollinations.ai), which is free and requires no API key.
+
+## Local Setup
+
+```bash
+git clone https://github.com/yourusername/kynexabot.git
+cd kynexabot
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env       # then add your bot token inside .env
+python bot.py
+```
+
+Get a token from [@BotFather](https://t.me/BotFather) on Telegram.
+
+## Deploying on Railway
+
+1. Push this repo to GitHub (`.env` is excluded via `.gitignore` — never commit it).
+2. Go to [railway.app](https://railway.app) → **New Project** → **Deploy from GitHub repo**.
+3. Select your `kynexabot` repository.
+4. In the project's **Variables** tab, add:
+   - `BOT_TOKEN` = your token from BotFather
+5. Railway detects the `Procfile` and runs the bot as a worker process automatically.
+6. Check **Deploy Logs** for `Kynexa Bot started polling...` to confirm it's live.
+
+## Project Structure
+```
+kynexabot/
+├── bot.py
+├── requirements.txt
+├── Procfile
+├── .env.example
+├── .gitignore
+└── README.md
+```
+
+## Next Steps / Ideas
+- Swap the rule-based prompt enhancer for a real LLM call for smarter prompt engineering
+- Add inline buttons to regenerate or vary an image
+- Add a `/style` command for art styles (anime, realistic, oil painting, etc.)
+- Add per-user rate limiting
